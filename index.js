@@ -36,7 +36,7 @@ bot.on("message", async (msg) => {
     await bot.sendMessage(chatId, "Добро пожаловать", {
       reply_markup: {
         inline_keyboard: [
-          [{ text: "Заполнить форму", web_app: { url: webAppUrl } }],
+          [{ text: "Записаться на курсы", web_app: { url: webAppUrl } }],
         ],
       },
     });
@@ -77,9 +77,9 @@ app.post("/web-data", async (req, res) => {
       id: queryId,
       title: "Успешная заявка",
       input_message_content: {
-        message_text:
-          "Поздравляю, вы успешно подавли заявку на курсы на сумму " +
-          totalPrice,
+        message_text: `Поздравляю, вы успешно подавли заявку на курсы на сумму ${totalPrice} вы заказали: ${products
+          .map((item) => item.title)
+          .join(", ")} `,
       },
     });
     return res.status(200).json({});
